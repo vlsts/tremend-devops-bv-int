@@ -90,6 +90,20 @@ app.get('/notes', (req, res) => {
 });
 
 const PORT = 8080;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
+});
+
+// docker default signal
+process.on('SIGTERM', () => {
+    server.close(() => {
+        console.log('Server closed. (term)');
+    });
+});
+
+// ctrl+c signal
+process.on('SIGINT', () => {
+    server.close(() => {
+        console.log('Server closed. (int)');
+    });
 });
