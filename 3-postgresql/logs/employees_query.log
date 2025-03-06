@@ -1,4 +1,13 @@
- employee_id | first_name | last_name | department_name 
+ employee_id | first_name | last_name | department_name
 -------------+------------+-----------+-----------------
-(0 rows)
-
+           6 | Bob        | Johnson   | IT
+           7 | Charlie    | Brown     | IT
+           8 | Hannah     | Martinez  | IT
+           9 | Noah       | Lewis     | IT
+          10 | Liam       | Clark     | IT
+          11 | Emma       | Davis     | IT
+          12 | Olivia     | Taylor    | IT
+          13 | Lucas      | Baker     | IT
+          14 | Ava        | Evans     | IT
+          15 | William    | Nelson    | IT
+(10 rows)
