@@ -55,9 +55,9 @@ This can also be done by changing the docker environment variables of the contai
 psql -U tremend -d company_db < ./populatedb.sql
 ```
 
-## SQL Queries
+## 🔎 SQL Queries
 
-### Find the total number of employees
+### 🤵 Find the total number of employees
 ```sql
 SELECT count(*) FROM employees;
 ```
