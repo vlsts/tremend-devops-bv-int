@@ -1,22 +1,22 @@
-# DevOps Exercise 1: Linux essentials
+# 🐧 DevOps Exercise 1: Linux essentials
 
-## General mentions
+## ⚠️🤓 General mentions
 Before solving these tasks I updated the repositories and upgraded the apps using
 
 ```sh
 apt update && apt upgrade -y
 ```
 
-## Lookup the public IP of `tremend.com`
+## 🔎 Lookup the public IP of `tremend.com`
 
-### Installing `dig`
+### ⚙️ Installing `dig`
 For solving this task I decided to use `dig`. In order to use `dig`, the `dnsutils` package must be installed first by running
 
 ```sh
 apt install dnsutils
 ```
 
-### General `dig` output
+### ⚙️ General `dig` output
 
 In order to get the public IP(s) of the Tremend site we can simply use `dig tremend.com`. The output of this command is
 
@@ -43,7 +43,7 @@ tremend.com.            52      IN      A       176.34.175.11
 
 In here we can see that the `tremend.com` domain has 3 `A` DNS entries.
 
-### "Machine friendly" `dig` output
+### 🤖 "Machine friendly" `dig` output
 
 While the output above does the job we might need a more parsable output. Here comes to the rescue `+short`. By adding `+short` to the previous `dig` command we can get a more standard output:
 
@@ -57,7 +57,7 @@ $ dig +short tremend.com
 176.34.175.11
 ```
 
-## Map IP address 8.8.8.8 to hostname google-dns
+## 🗺️ Map IP address 8.8.8.8 to hostname google-dns
 
 In order to achieve this we can simply append the IP address and the desired hostname to `/etc/hosts`:
 
@@ -78,7 +78,7 @@ ff02::2 ip6-allrouters
 8.8.8.8 google-dns
 ```
 
-## Check if the DNS Port is open for Google DNS
+## 🔎 Check if the DNS Port is open for Google DNS
 
 In order to do this I will be using `nmap`. We have to first install it as it's not installed by default and then we can scan for port `53` like this:
 
@@ -98,9 +98,9 @@ PORT   STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 0.49 seconds
 ```
 
-## Modify the System to Use Google’s Public DNS 
+## 🔧 Modify the System to Use Google’s Public DNS 
 
-### Change the nameserver to 8.8.8.8 instead of the default local configuration
+### 🔧 Change the nameserver to 8.8.8.8 instead of the default local configuration
 
 In order to achieve this we can simply append `nameserver` accompanied by the IP address to `/etc/resolv.conf`:
 
@@ -118,7 +118,7 @@ nameserver 8.8.8.8
 Due to the `resolv.conf` specification ([see here](https://man7.org/linux/man-pages/man5/resolv.conf.5.html)) we **cannot** use the previously declared hostname `google-dns` in this file.
 
 
-### Perform another public IP lookup for tremend.com and compare the results
+### 🔎 Perform another public IP lookup for tremend.com and compare the results
 
 ```sh
 dig +short tremend.com
@@ -145,7 +145,7 @@ dig +short tremend.com @9.9.9.9
 34.248.35.216
 ```
 
-## Install and verify that Nginx service is running 
+## 🔧 Install and verify that Nginx service is running 
 
 To achieve this `nginx` can be simply installed from the Ubuntu repos and managed through the `service` command as `systemd` and subsequently `systemctl` are not available on the Docker version of Ubuntu.
 
@@ -175,7 +175,7 @@ service nginx status
  * nginx is running
 ```
 
-## Find the listening port for nginx
+## 🔎 Find the listening port for nginx
 In order to find the listening port for the `nginx` service we can use `ss` like so:
 
 ```sh
@@ -191,7 +191,7 @@ In here we can see that `nginx` can be reached at port 80 over IPv4 and IPv6.
 
 ## 🎁 Bonus Exercises
 
-### Change the Nginx Listening port to 8080 
+### 🔧 Change the Nginx Listening port to 8080 
 In order to achieve this we must edit the default configuration available at `/etc/nginx/sites-available/default`. We have to change the ports from both listen statements in the server block to the desired port, `8080`, and then restart the service through `service nginx reload`.
 
 This is how the file will look after the modifications:
@@ -221,7 +221,7 @@ tcp       LISTEN     0          511                  0.0.0.0:8080              0
 tcp       LISTEN     0          511                     [::]:8080                 [::]:*
 ```
 
-### Modify the default HTML page title
+### 🔧 Modify the default HTML page title
 
 The same `/etc/nginx/sites-available/default` tells us that the site is located at `/var/www/html` through the `root` directive. (`root /var/www/html`). Listing the file contents in that folders renders one file, `index.nginx-debian.html`. By editing the heading in this file we can achieve the wanted result.
 
