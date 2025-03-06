@@ -4,6 +4,9 @@ on:
     push:
         branches:
             - main
+        paths: 
+            - 2-docker/**
+            - .github/workflows/build_docker.yml
 
 env:
     USERNAME: vlsts
